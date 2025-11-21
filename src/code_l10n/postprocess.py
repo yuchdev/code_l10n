@@ -145,7 +145,7 @@ def render_docstring(indent: str, quotes: str, inner_text: str) -> str:
     
     Args:
         indent: Leading whitespace
-        quotes: Quote style ('"""' or "'''")
+        quotes: Quote style (triple double or single quotes)
         inner_text: Text content
         
     Returns:

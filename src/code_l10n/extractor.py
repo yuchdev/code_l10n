@@ -77,41 +77,51 @@ class CommentExtractor:
         lines = source.splitlines(keepends=True)
         
         for node in ast.walk(tree):
-            docstring = ast.get_docstring(node, clean=False)
-            if docstring is None:
+            # Only process nodes that can have docstrings
+            if not isinstance(node, (ast.Module, ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef)):
                 continue
             
-            # Get the position of the docstring
-            # For module, class, and function docstrings, they are the first statement in the body
-            if isinstance(node, (ast.Module, ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef)):
-                if node.body and isinstance(node.body[0], ast.Expr):
-                    expr = node.body[0]
-                    if isinstance(expr.value, ast.Constant) and isinstance(expr.value.value, str):
-                        start_line = expr.lineno
-                        end_line = expr.end_lineno if expr.end_lineno else start_line
-                        
-                        # Determine the quote style used
-                        line_text = lines[start_line - 1] if start_line <= len(lines) else ""
-                        indent = len(line_text) - len(line_text.lstrip())
-                        indent_str = line_text[:indent]
-                        
-                        # Detect quote style
-                        quote_style = '"""'
-                        if "'''" in line_text:
-                            quote_style = "'''"
-                        elif '"""' in line_text:
-                            quote_style = '"""'
-                        
-                        segments.append(CommentSegment(
-                            file_path=path,
-                            segment_type="docstring",
-                            start_line=start_line,
-                            end_line=end_line,
-                            indent=indent_str,
-                            marker=quote_style,
-                            end_marker=quote_style,
-                            raw_text=docstring
-                        ))
+            # Check if first statement is a string expression (docstring)
+            if not node.body:
+                continue
+            
+            first_stmt = node.body[0]
+            if not isinstance(first_stmt, ast.Expr):
+                continue
+            
+            if not isinstance(first_stmt.value, ast.Constant):
+                continue
+            
+            if not isinstance(first_stmt.value.value, str):
+                continue
+            
+            # This is a docstring
+            docstring = first_stmt.value.value
+            start_line = first_stmt.lineno
+            end_line = first_stmt.end_lineno if first_stmt.end_lineno else start_line
+            
+            # Determine the quote style used
+            line_text = lines[start_line - 1] if start_line <= len(lines) else ""
+            indent = len(line_text) - len(line_text.lstrip())
+            indent_str = line_text[:indent]
+            
+            # Detect quote style
+            quote_style = '"""'
+            if "'''" in line_text:
+                quote_style = "'''"
+            elif '"""' in line_text:
+                quote_style = '"""'
+            
+            segments.append(CommentSegment(
+                file_path=path,
+                segment_type="docstring",
+                start_line=start_line,
+                end_line=end_line,
+                indent=indent_str,
+                marker=quote_style,
+                end_marker=quote_style,
+                raw_text=docstring
+            ))
         
         return segments
     

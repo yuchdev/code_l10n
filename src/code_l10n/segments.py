@@ -22,7 +22,7 @@ class CommentSegment:
         end_line: Ending line number (1-based, inclusive)
         indent: Leading whitespace from the first line
         marker: Comment marker (e.g., "#", "//", "/*") or docstring quote
-        end_marker: End marker for block comments/docstrings (e.g., "*/", '"""')
+        end_marker: End marker for block comments/docstrings (e.g., "*/" or triple quotes)
         raw_text: Inner text content without markers
     """
     file_path: Path
