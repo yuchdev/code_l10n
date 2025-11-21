@@ -4,7 +4,7 @@ import unittest
 from unittest.mock import patch, MagicMock
 
 
-class PythonModuleTest(unittest.TestCase):
+class Code L10nTest(unittest.TestCase):
 
     def test_initial(self):
         pass

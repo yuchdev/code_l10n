@@ -7,7 +7,7 @@ requires = [
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "python_module"
+name = "code_l10n"
 version = "0.1.0"
 description = "Python module template"
 authors = [{name = "Yurii Cherkasov", email = "strategarius@protonmail.com"}]

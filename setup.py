@@ -100,7 +100,7 @@ if __name__ == "__main__":
         version=VERSION,
         author="Yurii Cherkasov",
         author_email="strategarius@protonmail.com",
-        description=None,
+        description="The library scans source trees for comments and docstrings in many programming / config languages; detects parts of those comments/docstrings written in a specific non-English language (e.g. Ukrainian); dranslates those parts via a pluggable translation engine (external API or simple built-in engine).",
         long_description=README,
         long_description_content_type="text/markdown",
         license="MIT",
