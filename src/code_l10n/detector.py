@@ -5,7 +5,7 @@ Language detection for text fragments.
 import re
 import logging
 from dataclasses import dataclass
-from typing import Sequence
+from typing import Sequence, Optional
 from .enums import Language
 
 
@@ -24,7 +24,7 @@ class DetectedFragment:
         end_offset: End position in original text
     """
     text: str
-    language: Language | None
+    language: Optional[Language]
     start_offset: int
     end_offset: int
 
@@ -122,7 +122,7 @@ class LanguageDetector:
         
         return sentences
     
-    def _detect_language(self, text: str) -> Language | None:
+    def _detect_language(self, text: str) -> Optional[Language]:
         """
         Detect language of a text fragment using character-based heuristics.
         """

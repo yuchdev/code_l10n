@@ -4,7 +4,7 @@ Data structures for representing comment and docstring segments.
 """
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Literal
+from typing import Literal, Optional
 
 
 CommentSegmentType = Literal["line_block", "block_comment", "docstring"]
@@ -30,6 +30,6 @@ class CommentSegment:
     start_line: int
     end_line: int
     indent: str
-    marker: str | None
-    end_marker: str | None
+    marker: Optional[str]
+    end_marker: Optional[str]
     raw_text: str

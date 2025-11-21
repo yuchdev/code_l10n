@@ -4,7 +4,7 @@ Comment style definitions and registry for supported file types.
 """
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import List, Tuple
+from typing import List, Tuple, Optional
 import fnmatch
 
 
@@ -197,7 +197,7 @@ DEFAULT_COMMENT_STYLES: dict[str, CommentStyle] = {
 }
 
 
-def get_comment_style_for_path(path: Path, overrides: dict[str, dict] = None) -> CommentStyle | None:
+def get_comment_style_for_path(path: Path, overrides: dict[str, dict] = None) -> Optional[CommentStyle]:
     """
     Resolve CommentStyle for a given file path.
     
