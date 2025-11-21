@@ -130,6 +130,6 @@ if __name__ == "__main__":
         packages=find_packages(where=str(HERE / 'src')),
         package_dir={"": "src"},
         package_data={PACKAGE_NAME: ['defaults/*']},
-        python_requires=">=3.8",
+        python_requires=">=3.9",
         install_requires=DEPENDENCIES,
     )

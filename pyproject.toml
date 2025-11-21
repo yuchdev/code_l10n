@@ -9,11 +9,11 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "code_l10n"
 version = "0.1.0"
-description = "Python module template"
+description = "Comment and docstring localization library for source code"
 authors = [{name = "Yurii Cherkasov", email = "strategarius@protonmail.com"}]
 license = {text = "MIT"}
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
