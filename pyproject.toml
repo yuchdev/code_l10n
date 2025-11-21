@@ -1,0 +1,31 @@
+[build-system]
+requires = [
+    "setuptools>=42",
+    "wheel",
+    "tomli>=1.0.0; python_version < '3.11'"
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "python_module"
+version = "0.1.0"
+description = "Python module template"
+authors = [{name = "Yurii Cherkasov", email = "strategarius@protonmail.com"}]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: End Users/Desktop",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+python_module = ["defaults/*"]
+
